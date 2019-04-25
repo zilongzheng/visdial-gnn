@@ -2,7 +2,7 @@
 
 Pytorch Implementation for the paper:
 
-**[Reasoning Visual Dialogs with Structural and Partial Observations](https://arxiv.org/pdf/1904.05548.pdf)**  
+**[Reasoning Visual Dialogs with Structural and Partial Observations](https://arxiv.org/abs/1904.05548)**  
 Zilong Zheng*, Wenguan Wang*, Siyuan Qi*, Song-Chun Zhu (* equal contributions)  
 <https://arxiv.org/pdf/1904.05548>  
 CVPR 2019 (Oral)
