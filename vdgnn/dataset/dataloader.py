@@ -9,7 +9,7 @@ from tqdm import tqdm
 import torch
 import torch.nn.functional as F
 from torch.utils.data import Dataset
-from vdgnn.dataset.readers import DenseAnnotationsReader, DialogsReader, ImageFeaturesHdfReader
+from vdgnn.dataset.readers import DenseAnnotationsReader, ImageFeaturesHdfReader
 
 TRAIN_VAL_SPLIT = {'0.9': 80000, '1.0': 123287}
 
