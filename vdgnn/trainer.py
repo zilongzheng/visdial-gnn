@@ -183,10 +183,10 @@ class Trainer(object):
                 ranks = scores_to_ranks(dec_out.data)
                 gt_ranks = get_gt_ranks(ranks, batch['ans_ind'].data)
                 all_ranks.append(gt_ranks)
-                num_opts = dec_out.size(1)
-                output = dec_out.view(batch_size, max_num_rounds, num_opts)
-                output = output[torch.arange(batch_size), batch['round_id']-1, :]
                 if 'gt_relevance' in batch:
+                    num_opts = dec_out.size(1)
+                    output = dec_out.view(batch_size, max_num_rounds, num_opts)
+                    output = output[torch.arange(batch_size), batch['round_id']-1, :]
                     ndcg.observe(output, batch['gt_relevance'])
 
         all_ranks = torch.cat(all_ranks, 0)

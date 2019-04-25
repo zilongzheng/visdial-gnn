@@ -139,7 +139,7 @@ if __name__ == '__main__':
     # loading dataset wrapping with a dataloader
     # ----------------------------------------------------------------------------
 
-    dataset = VisDialDataset(args, args.split, isTrain=True)
+    dataset = VisDialDataset(args, args.split, isTrain=False)
     dataloader = DataLoader(dataset,
                         batch_size=args.batch_size,
                         shuffle=False,
