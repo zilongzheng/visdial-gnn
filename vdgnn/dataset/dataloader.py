@@ -135,6 +135,7 @@ class VisDialDataset(Dataset):
             self.annotations_reader = None
 
         if self.use_img_id_idx:
+            print('Loading input dialog json: {}'.format(self.input_dialog))
             with open(self.input_dialog, 'r') as dialog_json:
                 visdial_data = json.load(dialog_json)
                 self.idx2imgid = [dialog_for_image['image_id']
@@ -172,6 +173,8 @@ class VisDialDataset(Dataset):
             if load_label.format(data_split) not in ques_file:
                 continue
             if label.startswith('opt_list') or label.startswith('opt_length'):
+                if self.__version == '1.0' and self.__split == 'val':
+                    label = load_label.format('test')
                 self.data[save_label.format(self.__split)] = torch.from_numpy(
                     np.array(ques_file[label], dtype='int64'))
             else:
@@ -264,7 +267,7 @@ class VisDialDataset(Dataset):
             ans_ind = self.data[dtype + '_ans_ind'][idx]
             item['ans_ind'] = ans_ind.view(-1)
 
-        if dtype == 'val':
+        if dtype == 'val' and self.annotations_reader is not None:
             dense_annotations = self.annotations_reader[image_id]
             item['gt_relevance'] = torch.tensor(
                 dense_annotations["gt_relevance"]).float()
@@ -296,22 +299,19 @@ class VisDialDataset(Dataset):
                 out[key] = torch.stack(merged_batch[key], 0)
 
         # Dynamic shaping of padded batch
-        out['hist'] = out['hist'][:, :, :torch.max(
-            out['hist_len'])].contiguous()
-        out['ques'] = out['ques'][:, :, :torch.max(
-            out['ques_len'])].contiguous()
+        out['hist'] = out['hist'][:, :, :torch.max(out['hist_len'])].contiguous()
+        out['ques'] = out['ques'][:, :, :torch.max(out['ques_len'])].contiguous()
         out['ans'] = out['ans'][:, :, :torch.max(out['ans_len'])].contiguous()
         out['cap'] = out['cap'][:, :torch.max(out['cap_len'])].contiguous()
 
-        out['opt'] = out['opt'][:, :, :, :torch.max(
-            out['opt_len'])].contiguous()
+        out['opt'] = out['opt'][:, :, :, :torch.max(out['opt_len'])].contiguous()
 
         batch_keys = ['num_rounds', 'img_feat', 'img_fnames', 'hist', 'hist_len', 'ques', 'ques_len',
                       'ans', 'ans_len', 'cap', 'cap_len', 'opt', 'opt_len']
         if dtype != 'test':
             batch_keys.append('ans_ind')
 
-        if dtype == 'val' and self.annotations_reader != None:
+        if dtype == 'val' and self.annotations_reader is not None:
             batch_keys.append('gt_relevance')
             batch_keys.append('round_id')
         return {key: out[key] for key in batch_keys}

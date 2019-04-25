@@ -1,6 +1,11 @@
 # Reasoning Visual Dialogs with Structural and Partial Observations
 
-Pytorch Implementation for the paper [Reasoning Visual Dialogs with Structural and Partial Observations](https://arxiv.org/pdf/1904.05548.pdf), published in CVPR 2019 with oral presentation.
+Pytorch Implementation for the paper:
+
+**[Reasoning Visual Dialogs with Structural and Partial Observations](https://arxiv.org/pdf/1904.05548.pdf)**  
+Zilong Zheng*, Wenguan Wang*, Siyuan Qi*, Song-Chun Zhu (* equal contributions)  
+<https://arxiv.org/pdf/1904.05548>  
+CVPR 2019 (Oral)
 
 ![](assets/model.png)
 
@@ -35,6 +40,11 @@ bash ./scripts/download_data_v1.sh faster_rcnn
 python train.py --dataroot ./data/v1.0/
 ```
 
+- To evaluate the model using val split, run:
+```bash
+python evaluate.py --dataroot ./data/v1.0/ --split val --ckpt /path/to/checkpoint
+```
+
 ### Train/Evaluate VisDial v0.9
 - We use pre-extracted image features from VGG-16 and VGG-19 as specified [here](https://github.com/batra-mlp-lab/visdial#extracting-image-features)
 - To download preprocessed data (e.g. vgg19) and save it to `$PROJECT_DIR/data/v0.9/`, run
@@ -64,4 +74,4 @@ If you use this code for your research, please cite our paper.
 
 ## Acknowledgments
 
-We [Visual Dialog Challenge Starter Code](https://github.com/batra-mlp-lab/visdial-challenge-starter-pytorch) and [GPNN](https://github.com/SiyuanQi/gpnn) as referenced util code.
+We use [Visual Dialog Challenge Starter Code](https://github.com/batra-mlp-lab/visdial-challenge-starter-pytorch) and [GPNN](https://github.com/SiyuanQi/gpnn) as referenced util code.
