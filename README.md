@@ -3,7 +3,7 @@
 Pytorch Implementation for the paper:
 
 **[Reasoning Visual Dialogs with Structural and Partial Observations](https://arxiv.org/abs/1904.05548)**  
-[Zilong Zheng](http://web.cs.ucla.edu/~zilongzheng/)<sup>\*</sup>, [Wenguan Wang](https://sites.google.com/site/wenguanwangwwg/)<sup>\*</sup>, [Siyuan Qi](http://web.cs.ucla.edu/~syqi/)<sup>\*</sup>, [Song-Chun Zhu](http://www.stat.ucla.edu/~sczhu/) (* equal contributions)  
+[Zilong Zheng](https://zilongzheng.github.io/)<sup>\*</sup>, [Wenguan Wang](https://sites.google.com/site/wenguanwangwwg/)<sup>\*</sup>, [Siyuan Qi](http://web.cs.ucla.edu/~syqi/)<sup>\*</sup>, [Song-Chun Zhu](http://www.stat.ucla.edu/~sczhu/) (* equal contributions)  
 In CVPR 2019 (Oral)
 
 ![](assets/model.png)
@@ -15,7 +15,7 @@ In CVPR 2019 (Oral)
 ### Installation
 - Clone this repo:
 ```bash
-git clone https://github.com/zilong/visdial-gnn.git
+git clone https://github.com/zilongzheng/visdial-gnn.git
 cd visdial-gnn
 ```
 - Install requirements
